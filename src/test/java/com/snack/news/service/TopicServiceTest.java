@@ -73,8 +73,8 @@ public class TopicServiceTest {
 		assertThat(updatedCorp.getImage()).isEqualTo("UPDATE_IMAGE");
 	}
 
-	@Test(expected = TopicNotFoundException.class)
 	@Transactional
+	@Test(expected = TopicNotFoundException.class)
 	public void 수정하려는_토픽ID가_유효하지_않는_경우_예외를_반환한다() {
 		Long invalidTopicId = 123L;
 		TopicDto updateTopicDto = TopicDto.builder()
