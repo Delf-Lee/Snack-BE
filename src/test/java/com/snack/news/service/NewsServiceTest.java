@@ -146,7 +146,7 @@ public class NewsServiceTest extends NewsTestcase {
 	@Transactional
 	public void 원하는_Category의_뉴스를_조회할_수_있다() {
 
-		Category category = Category.builder().id(2L).title("커머스").build();
+		Category category = Category.COMMERCE;
 		NewsDto newsDto = NewsDto.builder()
 				.category(category)
 				.build();
@@ -171,7 +171,7 @@ public class NewsServiceTest extends NewsTestcase {
 		final List<Long> testTopicIds = asList(1L, 2L);
 		final LocalDateTime start = LocalDateTime.of(2019, 7, 1, 0, 0);
 		final LocalDateTime end = LocalDateTime.of(2019, 8, 31, 0, 0);
-		final Category category = Category.builder().id(2L).title("커머스").build();
+		final Category category = Category.COMMERCE;
 		final List<Long> tagIds = Collections.singletonList(1L);
 
 		NewsDto newsDto = NewsDto.builder()

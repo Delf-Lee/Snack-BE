@@ -18,7 +18,7 @@ public class NewsDto {
 	private String content;
 	private String link;
 	private Category category;
-	private TopicType type;
+	private TopicType type; // TODO: topic type 별로 뉴스 조회하기
 	private List<Long> topicIds;
 	private List<Long> tagIds;
 	private LocalDateTime startDateTime;

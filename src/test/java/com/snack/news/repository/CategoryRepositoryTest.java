@@ -19,11 +19,4 @@ public class CategoryRepositoryTest extends NewsTestcase {
 	@Autowired
 	private CategoryRepository categoryRepository;
 
-	@Test
-	@Transactional
-	public void ID에_해당하는_Category를_가져올_수_있다() {
-		Category category = categoryRepository.findById(1L).orElseThrow(CategoryNotFoundException::new);
-
-		assertThat(category.getTitle()).isEqualTo("IT");
-	}
 }

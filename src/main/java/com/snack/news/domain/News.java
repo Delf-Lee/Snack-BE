@@ -7,6 +7,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Optional;
 
 @NoArgsConstructor
 @Getter
@@ -26,8 +27,9 @@ public class News extends BaseTimeEntity {
 	@Column
 	private String link;
 
-	@ManyToOne
-	@JoinColumn(name = "category_id")
+	// @ManyToOne
+	// @JoinColumn(name = "category_type")
+	@Enumerated(EnumType.STRING)
 	private Category category;
 
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -47,7 +49,7 @@ public class News extends BaseTimeEntity {
 	public News(String title, String link, String content, Category category, List<Topic> topics, List<Tag> tags) {
 		this.title = title;
 		this.link = link;
-		this.category = category;
+		this.category = Optional.ofNullable(category).orElse(Category.NONE);
 		this.content = content;
 		this.topics = topics;
 		this.tags = tags;
