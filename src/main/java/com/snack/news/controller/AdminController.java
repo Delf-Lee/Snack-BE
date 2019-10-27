@@ -24,12 +24,7 @@ public class AdminController {
 	}
 
 	@GetMapping("/news")
-	public ResponseEntity<Page<News>> getNewsList() {
-		return getNewsList(1);
-	}
-
-	@GetMapping("/news/{page}")
-	public ResponseEntity<Page<News>> getNewsList(@PathVariable int page) {
+	public ResponseEntity<Page<News>> getNewsList(@RequestParam(defaultValue = "1") int page) {
 		Page<News> result = adminService.getNewsList(page);
 		if (result.isEmpty()) {
 			return ResponseEntity.noContent().build();
