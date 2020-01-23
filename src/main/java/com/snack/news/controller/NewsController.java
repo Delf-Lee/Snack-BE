@@ -1,5 +1,6 @@
 package com.snack.news.controller;
 
+import com.snack.news.apiversion.Version;
 import com.snack.news.domain.news.News;
 import com.snack.news.dto.ListCursorResult;
 import com.snack.news.dto.RequestNewsDto;
@@ -18,12 +19,21 @@ public class NewsController {
 	private final NewsService newsService;
 
 	@GetMapping
-	public ResponseEntity<ListCursorResult<News>> getNewsList(@ModelAttribute @Valid RequestNewsDto newsDto) {
+	public ResponseEntity<?> getNewsList(@ModelAttribute @Valid RequestNewsDto newsDto, @RequestParam(defaultValue = "default") Version version) {
 		ListCursorResult<News> result = newsService.getNewsList(newsDto);
 		if (result.isEmpty()) {
 			return ResponseEntity.noContent().build();
 		}
-		return WrappedResponse.ok(result);
+
+		if(version == Version.V1) {
+			return WrappedResponse.ok(result);
+		}
+
+		if(version == Version.DEFAULT) {
+			return WrappedResponse.ok(result.getList());
+		}
+
+		throw new IllegalArgumentException();
 	}
 
 	@GetMapping("/{newsId}")
