@@ -1,10 +1,12 @@
 package com.snack.news.dto;
 
 import lombok.Getter;
+import lombok.ToString;
 
 import java.util.List;
 
 @Getter
+@ToString
 public class ListCursorResult<T> extends Wrapper<List<T>> {
 	private boolean hasNext;
 

@@ -1,16 +1,12 @@
 package com.snack.news.controller;
 
-import com.snack.news.domain.category.Category;
 import com.snack.news.dto.CategoryDto;
-import com.snack.news.dto.WrappedResponse;
-import com.snack.news.dto.Wrapper;
 import com.snack.news.service.CategoryService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @AllArgsConstructor
 @RestController
@@ -19,17 +15,17 @@ public class CategoryController {
 	private final CategoryService categoryService;
 
 	@PostMapping
-	public ResponseEntity<Wrapper<Category>> createCategory(@Valid @RequestBody CategoryDto categoryDto) {
-		return WrappedResponse.ok(categoryService.createCategory(categoryDto));
+	public ResponseEntity<?> createCategory(@Valid @RequestBody CategoryDto categoryDto) {
+		return ResponseEntity.ok(categoryService.createCategory(categoryDto));
 	}
 
 	@GetMapping
-	public ResponseEntity<Wrapper<List<Category>>> getCategoryList() {
-		return WrappedResponse.ok(categoryService.getCategoryList());
+	public ResponseEntity<?> getCategoryList() {
+		return ResponseEntity.ok(categoryService.getCategoryList());
 	}
 
 	@PutMapping
-	public ResponseEntity<Wrapper<Category>> updateCategory(@RequestBody CategoryDto categoryDto) {
-		return WrappedResponse.ok(categoryService.updateCategory(categoryDto));
+	public ResponseEntity<?> updateCategory(@RequestBody CategoryDto categoryDto) {
+		return ResponseEntity.ok(categoryService.updateCategory(categoryDto));
 	}
 }
